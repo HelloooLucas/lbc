@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import useConversationsList from "../hooks/use-conversations-list";
-import ConversationCard from "./conversation";
+import ConversationCard from "./conversation-card";
+import useConversationsList from "./use-conversations-list";
 
 const Wrapper = styled.aside`
   background-color: #f2f2f2;

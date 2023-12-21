@@ -1,7 +1,12 @@
-import api from "../api";
+import api from "../../../api";
 import { useRouter } from "next/router";
-import { getLoggedUserId } from "../utils/getLoggedUserId";
+import { getLoggedUserId } from "../../../utils/getLoggedUserId";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+async function getDetails(convId: string) {
+  const res = await api.get(`/conversation/${convId}`);
+  return res.data[0];
+}
 
 async function getmessages(convId: string) {
   const res = await api.get("/messages", {
@@ -45,7 +50,13 @@ function useConversation() {
 
   const conversationMessagesQueryKey = ["conversation-messages", { convId }];
 
-  const { isFetching, data, error } = useQuery({
+  const details = useQuery({
+    queryKey: ["conversation-details", { convId }],
+    queryFn: () => getDetails(convId),
+    enabled: !!convId,
+  });
+
+  const messages = useQuery({
     queryKey: conversationMessagesQueryKey,
     queryFn: () => getmessages(convId),
     enabled: !!convId,
@@ -62,9 +73,10 @@ function useConversation() {
   });
 
   return {
-    isFetching,
-    messages: data,
-    error,
+    isFetching: details.isFetching || messages.isFetching,
+    details: details.data,
+    messages: messages.data,
+    error: details.error || messages.error,
     sendMessage: {
       ...mutation,
       mutate: (message: string) => mutation.mutate({ convId, message }),

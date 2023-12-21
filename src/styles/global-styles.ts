@@ -36,7 +36,14 @@ const resetCss = css`
   ol, ul {
     list-style: none;
   }
-
+  input, button {
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
   * {
     box-sizing: border-box;
   }

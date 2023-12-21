@@ -1,6 +1,6 @@
-import api from "../api";
+import api from "../../api";
 import { useQuery } from "@tanstack/react-query";
-import { getLoggedUserId } from "../utils/getLoggedUserId";
+import { getLoggedUserId } from "../../utils/getLoggedUserId";
 
 async function getConversationsList() {
   const userId = getLoggedUserId();
