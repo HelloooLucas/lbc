@@ -2,7 +2,6 @@ import { useState } from "react";
 import type { AppProps } from "next/app";
 import GlobalStyles from "../styles/global-styles";
 
-import Layout from "../components/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -11,9 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </QueryClientProvider>
   );
 }

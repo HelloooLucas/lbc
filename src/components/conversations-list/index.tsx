@@ -7,6 +7,7 @@ const Wrapper = styled.aside`
   background-color: #f2f2f2;
   border-radius: 20px;
   padding: 8px;
+  height: 100%;
 `;
 
 function ConversationsList() {
