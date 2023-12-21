@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { AppProps } from "next/app";
 import GlobalStyles from "../styles/global-styles";
 
+import { comfortaa } from "../fonts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <div className={comfortaa.className}>
+        <Component {...pageProps} />
+      </div>
     </QueryClientProvider>
   );
 }
