@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Conversation from "../../../components/conversation";
-import ConversationsList from "../../../components/conversations-list";
+import Conversation from "../../components/conversation";
+import ConversationsList from "../../components/conversations-list";
 
 const Wrapper = styled.section`
   display: grid;
