@@ -1,10 +1,15 @@
 import React from "react";
-import Link from "next/link";
-import { getLoggedUserId } from "../utils/getLoggedUserId";
+import styled from "styled-components";
 import useConversationsList from "../hooks/use-conversations-list";
+import ConversationCard from "./conversation";
+
+const Wrapper = styled.aside`
+  background-color: #f2f2f2;
+  border-radius: 20px;
+  padding: 8px;
+`;
 
 function ConversationsList() {
-  const userId = getLoggedUserId();
   const { isFetching, data: conversations, error } = useConversationsList();
 
   if (isFetching && !conversations) return <p>Loading...</p>;
@@ -12,15 +17,13 @@ function ConversationsList() {
   if (!conversations.length) return <p>No conversations</p>;
 
   return (
-    <ul>
-      {conversations.map(
-        ({ id, senderId, recipientNickname, senderNickname }) => (
-          <Link key={id} href={`/conversation/${id}`}>
-            <li>{senderId === userId ? recipientNickname : senderNickname}</li>
-          </Link>
-        )
-      )}
-    </ul>
+    <Wrapper>
+      <ul>
+        {conversations.map(conversation => (
+          <ConversationCard key={conversation.id} {...conversation} />
+        ))}
+      </ul>
+    </Wrapper>
   );
 }
 

@@ -22,7 +22,7 @@ function Conversation() {
   if (error) return <p>An error occurred: {error.message}</p>;
 
   return (
-    <>
+    <div>
       {messages.length > 0 ? (
         <ul>
           {messages.map(message => (
@@ -43,7 +43,7 @@ function Conversation() {
           Send message
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
