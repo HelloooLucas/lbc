@@ -6,7 +6,7 @@ function formatConversationDate(timestamp) {
     now > date && now.toDateString() !== date.toDateString();
 
   if (isBeforeToday) {
-    return new Date(timestamp).toLocaleDateString(navigator.language, {
+    return new Date(timestamp).toLocaleDateString("fr-FR", {
       day: "numeric",
       month: "numeric",
       year: "numeric",

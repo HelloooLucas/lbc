@@ -2,7 +2,9 @@ import api from "../../api";
 import { useQuery } from "@tanstack/react-query";
 import { getLoggedUserId } from "../../utils/getLoggedUserId";
 
-async function getConversationsList() {
+export const CONVERSATIONS_LIST_QUERY_KEY = ["conversations-list"];
+
+export async function getConversationsList() {
   const userId = getLoggedUserId();
   const res = await api.get("/conversations", {
     params: { senderId: userId },
@@ -12,7 +14,7 @@ async function getConversationsList() {
 
 function useConversationsList() {
   return useQuery({
-    queryKey: ["conversations-list"],
+    queryKey: CONVERSATIONS_LIST_QUERY_KEY,
     queryFn: getConversationsList,
   });
 }
