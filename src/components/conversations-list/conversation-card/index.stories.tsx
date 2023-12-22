@@ -4,6 +4,7 @@ import ConversationCard from ".";
 const meta = {
   title: "ConversationCard",
   component: ConversationCard,
+  excludeStories: ["twoDaysAgo"],
 } satisfies Meta<typeof ConversationCard>;
 
 type Story = StoryObj<typeof meta>;
@@ -28,8 +29,9 @@ export const UserIsRecipient: Story = {
   },
 };
 
-const twoDaysAgo = new Date();
-twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+const today = new Date();
+today.setDate(today.getDate() - 2);
+export const twoDaysAgo = today.getTime();
 
 export const MessageSentTwoDaysAgo: Story = {
   args: {
@@ -37,7 +39,7 @@ export const MessageSentTwoDaysAgo: Story = {
     senderId: 1,
     senderNickname: "Sender's name",
     recipientNickname: "Recipient's name",
-    lastMessageTimestamp: twoDaysAgo.getTime(),
+    lastMessageTimestamp: twoDaysAgo,
   },
 };
 

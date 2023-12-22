@@ -1,4 +1,10 @@
-function formatConversationDate(timestamp) {
+export function getHoursAndMinutes(date: Date) {
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+function formatConversationDate(timestamp: number) {
   const now = new Date();
   const date = new Date(timestamp);
 
@@ -13,9 +19,7 @@ function formatConversationDate(timestamp) {
     });
   }
 
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
+  return getHoursAndMinutes(date);
 }
 
 export default formatConversationDate;

@@ -3,8 +3,9 @@ import { Meta, StoryObj } from "@storybook/react";
 import { withMockQuery } from "../../utils/storybook";
 
 import db from "../../server/db.json";
+import generateMockMessages from "./__mock-data__";
 
-const convId = 1;
+export const convId = 1;
 
 const meta = {
   title: "Conversation",
@@ -18,6 +19,7 @@ const meta = {
       },
     },
   },
+  excludeStories: ["convId"],
 } satisfies Meta<typeof Conversation>;
 
 type Story = StoryObj<typeof meta>;
@@ -30,9 +32,7 @@ export const WithFewMessages: Story = {
     }),
     withMockQuery({
       queryKey: ["conversation-messages", { convId }],
-      queryData: db.messages.filter(
-        message => message.conversationId === convId
-      ),
+      queryData: generateMockMessages({ convId }),
     }),
   ],
 };
@@ -45,12 +45,7 @@ export const WithManyMessages: Story = {
     }),
     withMockQuery({
       queryKey: ["conversation-messages", { convId }],
-      queryData: [
-        ...db.messages.filter(message => message.conversationId === convId),
-        ...db.messages.filter(message => message.conversationId === convId),
-        ...db.messages.filter(message => message.conversationId === convId),
-        ...db.messages.filter(message => message.conversationId === convId),
-      ],
+      queryData: generateMockMessages({ quantity: 22, convId }),
     }),
   ],
 };
@@ -76,9 +71,7 @@ export const WithMobileViewport: Story = {
     }),
     withMockQuery({
       queryKey: ["conversation-messages", { convId }],
-      queryData: db.messages.filter(
-        message => message.conversationId === convId
-      ),
+      queryData: generateMockMessages({ convId }),
     }),
   ],
   parameters: { viewport: { defaultViewport: "iphonex" } },

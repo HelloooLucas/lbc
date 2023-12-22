@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { withMockQuery } from "../../utils/storybook";
 import { CONVERSATIONS_LIST_QUERY_KEY } from "./use-conversations-list";
 
-import db from "../../server/db.json";
+import generateMockConversations from "./__mock-data__";
 
 const meta = {
   title: "ConversationsList",
@@ -16,7 +16,7 @@ export const WithFewConversations: Story = {
   decorators: [
     withMockQuery({
       queryKey: CONVERSATIONS_LIST_QUERY_KEY,
-      queryData: db.conversations,
+      queryData: generateMockConversations(),
     }),
   ],
 };
@@ -25,14 +25,7 @@ export const WithManyConversations: Story = {
   decorators: [
     withMockQuery({
       queryKey: CONVERSATIONS_LIST_QUERY_KEY,
-      queryData: [
-        ...db.conversations,
-        ...db.conversations,
-        ...db.conversations,
-        ...db.conversations,
-        ...db.conversations,
-        ...db.conversations,
-      ],
+      queryData: generateMockConversations(21),
     }),
   ],
 };

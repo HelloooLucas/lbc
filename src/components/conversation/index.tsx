@@ -154,7 +154,11 @@ function Conversation() {
       <MessagesList>
         {messages.length > 0 ? (
           messages.map(message => (
-            <Message key={message.id} isSelf={message.authorId === userId}>
+            <Message
+              key={message.id}
+              isSelf={message.authorId === userId}
+              data-testid="message"
+            >
               {message.body}
             </Message>
           ))
