@@ -24,6 +24,12 @@ const Wrapper = styled.section`
   }
 `;
 
+const NoConversationsSelected = styled.div`
+  display: grid;
+  place-items: center;
+  height: calc(100vh - var(--body-padding) * 2);
+`;
+
 const Main = styled.div`
   display: none;
 
@@ -38,9 +44,9 @@ function ConversationsListPage() {
       <ConversationsList />
 
       <Main>
-        <p>Please select a conversation</p>
-        <p>Or create a new one</p>
-        <button>Create a conversation</button>
+        <NoConversationsSelected>
+          Please select a conversation
+        </NoConversationsSelected>
       </Main>
     </Wrapper>
   );

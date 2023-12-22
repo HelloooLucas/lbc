@@ -4,8 +4,8 @@ import GlobalStyles from "../styles/global-styles";
 
 import {
   QueryClient,
-  QueryClientProvider,
   HydrationBoundary,
+  QueryClientProvider,
 } from "@tanstack/react-query";
 import { comfortaa } from "../fonts";
 

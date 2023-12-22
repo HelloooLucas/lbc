@@ -7,7 +7,14 @@ const Wrapper = styled.aside`
   background-color: #f2f2f2;
   border-radius: 20px;
   padding: 8px;
-  height: 100%;
+  height: calc(100vh - 100px);
+  overflow: scroll;
+`;
+
+const NoConversationsMessage = styled.div`
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 100px);
 `;
 
 function ConversationsList() {
@@ -15,14 +22,17 @@ function ConversationsList() {
 
   if (isFetching && !conversations) return <p>Loading...</p>;
   if (error) return <p>An error occurred: {error.message}</p>;
-  if (!conversations.length) return <p>No conversations</p>;
 
   return (
     <Wrapper>
       <ul>
-        {conversations.map(conversation => (
-          <ConversationCard key={conversation.id} {...conversation} />
-        ))}
+        {conversations.length > 0 ? (
+          conversations.map(conversation => (
+            <ConversationCard key={conversation.id} {...conversation} />
+          ))
+        ) : (
+          <NoConversationsMessage>No conversations</NoConversationsMessage>
+        )}
       </ul>
     </Wrapper>
   );

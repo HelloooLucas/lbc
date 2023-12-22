@@ -6,6 +6,7 @@ import ConversationsList from "../../components/conversations-list";
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: 20px;
   height: calc(100vh - var(--body-padding) * 2);
   background: white;
   border-radius: 30px;

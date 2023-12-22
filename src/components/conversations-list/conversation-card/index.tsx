@@ -1,8 +1,8 @@
 import React from "react";
 import BaseLink from "next/link";
 import styled from "styled-components";
-import { getLoggedUserId } from "../../utils/getLoggedUserId";
-import formatConversationDate from "../../utils/format-conversation-date";
+import { getLoggedUserId } from "../../../utils/getLoggedUserId";
+import formatConversationDate from "../../../utils/format-conversation-date";
 
 const Link = styled(BaseLink)`
   display: block;

@@ -9,11 +9,6 @@ import { getLoggedUserId } from "../../utils/getLoggedUserId";
 const Wrapper = styled.main`
   display: grid;
   grid-template-rows: 120px 1fr 40px;
-  padding: 0;
-
-  @media (min-width: 468px) {
-    padding: 0 50px;
-  }
 `;
 
 const Header = styled.div`
@@ -48,12 +43,17 @@ const Name = styled.p`
 `;
 
 const MessagesList = styled.ul`
-  align-self: end;
   display: flex;
   flex-direction: column;
   padding: 24px 0;
   overflow-y: auto;
-  max-height: calc(100vh - 310px);
+  height: calc(100vh - 310px);
+`;
+
+const NoMessages = styled.div`
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 310px);
 `;
 
 const Message = styled.div<{ isSelf: boolean }>`
@@ -151,17 +151,17 @@ function Conversation() {
         <Name>{contactName}</Name>
       </Header>
 
-      {messages.length > 0 ? (
-        <MessagesList>
-          {messages.map(message => (
+      <MessagesList>
+        {messages.length > 0 ? (
+          messages.map(message => (
             <Message key={message.id} isSelf={message.authorId === userId}>
               {message.body}
             </Message>
-          ))}
-        </MessagesList>
-      ) : (
-        <p>No messages to display</p>
-      )}
+          ))
+        ) : (
+          <NoMessages>No messages to display</NoMessages>
+        )}
+      </MessagesList>
 
       <Form onSubmit={submit}>
         <Input
